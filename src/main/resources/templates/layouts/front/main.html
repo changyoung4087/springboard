@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <!-- 시큐리티에 추가된 보안기능 토큰검증방식(토큰이 없으면 실행되지 않음) S -->
+        <meta name="_csrf" th:content="${_csrf.token}">
+        <meta name="_csrf_header" th:content="${_csrf.headerName}">
+        <!-- 시큐리티에 추가된 보안기능 토큰검증방식(토큰이 없으면 실행되지 않음) E -->
+
+        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={v}(v=${cssJsVersion})}">
+        <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/front/{cssFile}.css?v={v}(cssFile=${file}, v=${cssJsVersion})}">
+        <th:block layout:fragment="addCss"></th:block>
+
+        <script th:src="@{/js/front/common.js?v={v}(v=${cssJsVersion})}"></script>
+        <script th:each="jsFile : ${addScript}" th:src="@{/js/front/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${cssJsVersion})}"></script>
+        <th:block layout:fragment="addScript"></th:block>
+    </head>
+    <body>
+        <!-- 공통 헤더 -->
+        <header th:replace="~{outlines/front/header::common}"></header>
+        <!-- 메인 -->
+        <main layout:fragment="content"></main>
+        <!-- 공통 푸터 -->
+        <footer th:replace="~{outlines/front/footer::common}"></footer>
+        <iframe name="ifrmProcess" class="dn"></iframe>
+    </body>
+
+</html>
