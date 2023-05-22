@@ -15,7 +15,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${file.upload.path}")
     private String fileUploadPath;
     private final SiteConfigInterceptor siteConfigInterceptor; /** 사이트 설정 유지 인터셉터 */
-    @Override
+    @Override /** 컨트롤러 없이 뷰를 사용할 수 있음 */
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
                 .setViewName("main/index");
