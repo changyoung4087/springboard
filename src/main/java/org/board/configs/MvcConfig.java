@@ -42,6 +42,7 @@ public class MvcConfig implements WebMvcConfigurer {
     }
 
     /** 메시지(properties) 처리 관련 메서드 */
+    @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setDefaultEncoding("UTF-8");

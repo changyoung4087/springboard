@@ -4,7 +4,7 @@ public interface MobileValidator {
     default boolean mobileNumCheck(String mobile) {
 
         /**
-         *  ** JoinValidator에서 다중상속이 필요하기 때문에 MobileValidator 를 interface class로 생성해줌. **
+         *  ** JoinValidator에서 다중상속이 필요하기 때문에 MobileValidator 를 interface class로 생성해줌 **
          *
          * 1. 형식의 통일화 - 숫자가 아닌 문자 전부 제거
          * 2. 패턴 생성 체크
