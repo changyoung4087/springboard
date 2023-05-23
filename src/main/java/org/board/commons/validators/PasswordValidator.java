@@ -34,6 +34,7 @@ public interface PasswordValidator {
      */
     default boolean specialCharsCheck(String password) {
 
-        return password.matches("[`~!@#$%\\^&\\*()-_+=]+");
+        //return password.matches("[`~!@#$%\\^&\\*()-_+=]+");
+        return true;
     }
 }
