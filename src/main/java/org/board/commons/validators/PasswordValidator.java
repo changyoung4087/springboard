@@ -1,5 +1,8 @@
 package org.board.commons.validators;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public interface PasswordValidator {
 
     /**
@@ -10,11 +13,15 @@ public interface PasswordValidator {
      * @return
      */
     default boolean alphaCheck(String password, boolean caseIncentive) {
-        if(caseIncentive) { // true :: 대소문자 구분없이 체크
-            return password.matches("[a-zA-Z]+");
+        if (caseIncentive) { // true :: 대소문자 구분없이 체크
+            Pattern pattern = Pattern.compile("[a-z]+", Pattern.CASE_INSENSITIVE);
+            return pattern.matcher(password).find(); // matches 말고 find 를 사용해야함??
         }
+
         // false :: 대문자, 소문자 각각 체크
-        return password.matches("[a-z]+") && password.matches("[A-Z]+");
+        Pattern pattern1 = Pattern.compile("[a-z]+");
+        Pattern pattern2 = Pattern.compile("[A-Z]+");
+        return pattern1.matcher(password).find() && pattern2.matcher(password).find();
     }
 
     /**
@@ -23,8 +30,9 @@ public interface PasswordValidator {
      * @return
      */
     default boolean numberCheck(String password) {
-        // \\d :: 모든 숫자패턴
-        return password.matches("\\d");
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
     }
 
     /**
@@ -33,8 +41,8 @@ public interface PasswordValidator {
      * @return
      */
     default boolean specialCharsCheck(String password) {
-
-        //return password.matches("[`~!@#$%\\^&\\*()-_+=]+");
-        return true;
+        Pattern pattern = Pattern.compile("[`~!#$%\\^&\\*()-_+=]+");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
     }
 }
