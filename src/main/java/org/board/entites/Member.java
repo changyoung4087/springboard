@@ -3,6 +3,7 @@ package org.board.entites;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
 import lombok.*;
+import org.board.commons.constants.Role;
 
 @Entity @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
@@ -26,4 +27,9 @@ public class Member extends BaseEntity {
     private String mobile; // 휴대전화번호
     @Lob
     private String termsAgree; // 약관동의 내역 // json 형태로 구현
+
+    /** 사용자 권한 추가 */
+    @Enumerated(EnumType.STRING) // 이넘클래스는 Enumerted 를 정의해야됨.
+    @Column(length = 10, nullable = false)
+    private Role role = Role.USER;
 }

@@ -1,6 +1,7 @@
 package org.board.models.member;
 
 import lombok.RequiredArgsConstructor;
+import org.board.commons.constants.Role;
 import org.board.controllers.members.JoinForm;
 import org.board.entites.Member;
 import org.board.repositories.MemberRepository;
@@ -22,6 +23,7 @@ public class MemberSaveService {
     public void save(JoinForm joinForm){
 
         Member member = new ModelMapper().map(joinForm, Member.class);
+        member.setRole(Role.USER);
         // 비밀번호 캐시화
         member.setUserPw(passwordEncoder.encode(joinForm.getUserPw()));
 
