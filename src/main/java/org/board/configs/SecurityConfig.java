@@ -43,7 +43,7 @@ public class SecurityConfig {
         // url 패턴에따라 접근할 수 있는 인가관련된 기능 정의
         http.authorizeHttpRequests()
                 .requestMatchers("/mypage/**").authenticated() // 회원정보 수정은 모두 마이페이지(회원 전용)
-                .requestMatchers("/admin/**").hasAuthority("ADMIN") // 관리자 전용
+//                .requestMatchers("/admin/**").hasAuthority("ADMIN") // 관리자 전용
                 .anyRequest().permitAll(); // 그 외 모든 페이지는 모든 회원이 접근 가능.
 
         // 이셉션 시 내가 원하는 경로로 이동.
