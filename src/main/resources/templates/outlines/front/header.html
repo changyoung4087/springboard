@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <header th:fragment="common">
-        ===== 헤더 @_@ =====
+        <section>
+            <th:block sec:authorize="isAuthenticated()"> <!-- 로그인일 때 인증받은 회원이 유입 -->
+                <a th:href="@{/member/logout}" th:text="#{member.logout}"></a>
+            </th:block>
+            <th:block sec:authorize="isAnonymous()"> <!-- 비회원일 때 -->
+                <a th:href="@{/member/join}" th:text="#{member.join}"></a>
+                <a th:href="@{/member/login}" th:text="#{member.login}"></a>
+            </th:block>
+        </section>
     </header>
 </html>

@@ -2,6 +2,7 @@ package org.board.models.member;
 
 import lombok.Builder;
 import lombok.Data;
+import org.board.commons.constants.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,6 +17,7 @@ public class MemberInfo implements UserDetails {
     private String userNm; // 회원명
     private String email; // 이메일
     private String mobile; // 휴대전화번호
+    private Role role;
     private Collection<GrantedAuthority> authorities; // 설정할 때 필요 ???
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
