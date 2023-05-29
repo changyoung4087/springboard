@@ -6,17 +6,21 @@
         <meta name="_csrf" th:content="${_csrf.token}">
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
         <!-- 시큐리티에 추가된 보안기능 토큰검증방식(토큰이 없으면 실행되지 않음) E -->
+        <meta name="description" th:content="${siteConfig.siteDescription}">
 
-        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <title>
+            <th:block th:if="${pageTitle != null}" th:text="${pageTitle + ' ::'}"></th:block>
+            <th:block th:text="${siteConfig.siteTitle}"></th:block>
+        </title>
         <!-- 링크 스타일 icon --->
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
         <!-- 링크 스타일 icon --->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={v}(v=${cssJsVersion})}">
-        <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/front/{cssFile}.css?v={v}(cssFile=${file}, v=${cssJsVersion})}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={v}(v=${siteConfig.cssJsVersion})}">
+        <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/front/{cssFile}.css?v={v}(cssFile=${file}, v=${siteConfig.cssJsVersion})}">
         <th:block layout:fragment="addCss"></th:block>
 
-        <script th:src="@{/js/front/common.js?v={v}(v=${cssJsVersion})}"></script>
-        <script th:each="jsFile : ${addScript}" th:src="@{/js/front/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${cssJsVersion})}"></script>
+        <script th:src="@{/js/front/common.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>
+        <script th:each="jsFile : ${addScript}" th:src="@{/js/front/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>
         <th:block layout:fragment="addScript"></th:block>
     </head>
     <body>
